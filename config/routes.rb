@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'pdf_files/index'
+
+  get 'pdf_files/new'
+
+  get 'pdf_files/creat'
+
+  get 'pdf_files/destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -53,4 +61,9 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+end
+
+Project::Application.routes.draw do
+  resources :pdf_files, only: [:index, :new, :create, :destroy]
+  root "pdf_files#index"
 end

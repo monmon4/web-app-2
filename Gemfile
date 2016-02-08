@@ -45,3 +45,5 @@ group :development do
   gem 'spring'
 end
 
+gem 'carrierwave', '~> 0.9'
+gem 'bootstrap-sass', '~> 2.3.2'
