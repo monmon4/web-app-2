@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  get 'pdf_files/index'
+  resources :accounts
 
-  get 'pdf_files/new'
+  resources :pdf_files, only: [:index, :new, :create, :destroy]
+  root "pdf_files#index"
 
-  get 'pdf_files/creat'
-
-  get 'pdf_files/destroy'
+  resources :sessions, only: [:new, :create, :destroy]
+  get "/login" => "sessions#new", as: "login"
+  delete "/logout" => "sessions#destroy", as: "logout"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -63,7 +64,14 @@ Rails.application.routes.draw do
   #   end
 end
 
-Project::Application.routes.draw do
-  resources :pdf_files, only: [:index, :new, :create, :destroy]
-  root "pdf_files#index"
-end
+#Project::Application.routes.draw do
+  #get 'sessions/new'
+
+  #get 'sessions/create'
+
+  #get 'sessions/destroy'
+
+  #resources :accounts
+  #resources :pdf_files, only: [:index, :new, :create, :destroy]
+  #root "pdf_files#index"
+#end
