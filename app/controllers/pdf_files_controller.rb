@@ -1,3 +1,5 @@
+require 'RMagick'
+
 class PdfFilesController < ApplicationController
   def index
   	@pdf_file =PdfFile.all
@@ -11,7 +13,8 @@ class PdfFilesController < ApplicationController
   	@pdf_file =PdfFile.new(pdf_file_params)
    
     if @pdf_file.save
-    redirect_to pdf_files_path, notice: "The pdf_file #{@pdf_file.name} has been uploaded."
+     
+      redirect_to pdf_files_path, notice: "The pdf_file #{@pdf_file.name} has been uploaded."
      else
       render "new"
     end
