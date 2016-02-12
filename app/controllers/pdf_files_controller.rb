@@ -1,5 +1,3 @@
-require 'RMagick'
-
 class PdfFilesController < ApplicationController
   def index
   	@pdf_file =PdfFile.all
@@ -13,8 +11,12 @@ class PdfFilesController < ApplicationController
   	@pdf_file =PdfFile.new(pdf_file_params)
    
     if @pdf_file.save
-     
-      redirect_to pdf_files_path, notice: "The pdf_file #{@pdf_file.name} has been uploaded."
+       pdf = Magick::ImageList.new("public#{@pdf_file.attachment}")
+      pdf.each_with_index do |img, i|
+        img.write "app/assets/images/#{i}_#{@pdf_file.name}.jpg"
+        @pdf_file.slides.create(title: "#{i}_#{@pdf_file.name}.jpg", likes: 0)
+      end
+    redirect_to pdf_files_path, notice: "The pdf_file #{@pdf_file.name} has been uploaded."
      else
       render "new"
     end
