@@ -18,7 +18,8 @@
   <tbody>
     <% @pdf_file.each do |pdf_file| %>
       <tr>
-        <td><%= pdf_file.name %></td>
+        
+        <td><%= link_to pdf_file.name, pdf_file_slides_path(pdf_file.id) %></td>
         
         <td><%= button_to "Delete",  pdf_file, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{pdf_file.name}?" %></td>
       </tr>

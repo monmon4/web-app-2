@@ -47,3 +47,4 @@ end
 
 gem 'carrierwave', '~> 0.9'
 gem 'bootstrap-sass', '~> 2.3.2'
+gem 'rmagick'

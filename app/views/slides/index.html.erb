@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Slides</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="1"></th>
+      <th>Likes</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @slides.each do |slide| %>
+      <tr>
+        <td><%= slide.title %></td>
+        <td><%= image_tag("/assets/#{slide.title}", height: '32', width:'32')%></td>
+        <td><%= slide.likes %></td>
+        <td><%= link_to 'Show', pdf_file_slide_path(slide.pdf_file_id, slide.id) %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
