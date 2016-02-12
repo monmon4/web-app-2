@@ -13,8 +13,8 @@ class PdfFilesController < ApplicationController
     if @pdf_file.save
        pdf = Magick::ImageList.new("public#{@pdf_file.attachment}")
       pdf.each_with_index do |img, i|
-        img.write "app/assets/images/#{i}_#{@pdf_file.name}.jpg"
-        @pdf_file.slides.create(title: "#{i}_#{@pdf_file.name}.jpg", likes: 0)
+        img.write "app/assets/images/#{@pdf_file.name}_#{i}.jpg"
+        @pdf_file.slides.create(title: "#{@pdf_file.name}_#{i}.jpg", likes: 0)
       end
     redirect_to pdf_files_path, notice: "The pdf_file #{@pdf_file.name} has been uploaded."
      else
