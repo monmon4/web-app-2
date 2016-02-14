@@ -19,6 +19,11 @@
 	<% end %>
 
 <div class="container" style="padding-top:20px;">
+	<% if logged_in? %>
+	<div >
+		<%= render 'pdf_files/form' %>
+	</div>
+	<% end %>
 <%= yield %>
 </div>
 </body>

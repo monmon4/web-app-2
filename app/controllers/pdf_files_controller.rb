@@ -1,6 +1,6 @@
 class PdfFilesController < ApplicationController
   def index
-  	@pdf_file =PdfFile.all
+  	@pdf_file =PdfFile.all.paginate(page: params[:page], per_page: 10)
    end
 
   def new
