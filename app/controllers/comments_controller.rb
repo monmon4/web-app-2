@@ -1,5 +1,17 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  
+#before_action :set_slide, only: [:create]
+  def create
+    @comment= @slide.comments.new(comment_params)
+    if @comment.save
+      redirect_to pdf_file_slide_path({id: comment_parent[:slide_id],pdf_file_id: comment_parent[:pdf_file_id]}),
+       notice: "comment successfully added!"
+    else
+      redirect_to pdf_files_path, alert:"failed to add comment!"
+    end
+  end
+
+  
 
   # GET /comments
   # GET /comments.json
