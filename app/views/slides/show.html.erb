@@ -9,6 +9,12 @@
 <p>
   <strong>Likes:</strong>
   <%= @slide.likes %>
+  <% if current_user.slides.find_by(id: @slide.id)
+  	link= "unlike"
+  	else
+  		link="like"
+  		end %>
+<%=link_to link, pdf_file_slide_path, method: :put %>
 </p>
 
 

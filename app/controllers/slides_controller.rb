@@ -5,6 +5,7 @@ class SlidesController < ApplicationController
   # GET /slides.json
   def index
     @slides = PdfFile.find(params[:pdf_file_id]).slides.paginate(page: params[:page], per_page: 10)
+    @pdf_file = PdfFile.find(params[:pdf_file_id])
   end
 
   # GET /slides/1
@@ -40,15 +41,13 @@ class SlidesController < ApplicationController
   # PATCH/PUT /slides/1
   # PATCH/PUT /slides/1.json
   def update
-    respond_to do |format|
-      if @slide.update(slide_params)
-        format.html { redirect_to @slide, notice: 'Slide was successfully updated.' }
-        format.json { render :show, status: :ok, location: @slide }
-      else
-        format.html { render :edit }
-        format.json { render json: @slide.errors, status: :unprocessable_entity }
-      end
+    if exist = current_user.slides.find_by(id: params[:id])
+      current_user.slides.delete(exist)
+    else
+      current_user.slides<<Slide.find_by(id: params[:id])
     end
+    Slide.find_by(id: params[:id]).update(likes: Slide.find_by(id: params[:id]).accounts.count )
+    redirect_to pdf_file_slide_path
   end
 
   # DELETE /slides/1
