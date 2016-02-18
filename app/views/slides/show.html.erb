@@ -13,9 +13,9 @@
 <p><%= image_tag("/assets/#{@slide.title}")%></p>
 
 
-<%= link_to "previous", pdf_file_slide_path(@pdf_file, @slide.prev) %>
+<%= link_to "previous", pdf_file_slide_path(@pdf_file, @slide.prev) if @slide.prev != nil %>
  
-<%= link_to "next", pdf_file_slide_path(@pdf_file, @slide.next) %>
+<%= link_to "next", pdf_file_slide_path(@pdf_file, @slide.next) if @slide.next != nil %>
 
 
 <p>
