@@ -11,7 +11,9 @@ class SlidesController < ApplicationController
   # GET /slides/1
   # GET /slides/1.json
   def show
-    
+    @slides = PdfFile.find(params[:pdf_file_id]).slides
+    @pdf_file = PdfFile.find(params[:pdf_file_id])
+  
   end
 
   # GET /slides/new
