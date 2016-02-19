@@ -1,0 +1,15 @@
+<div id="notes">
+	<%= render @pdf_file.notes %>
+</div>
+<div>
+	<%= form_for ([@pdf_file, @pdf_file.notes.new]) do |f| %>
+	<div class="field">
+		<%= f.label :note %>
+		<%= f.text_area :note, size: "25x5" %>
+	</div>
+	<div class="actions">
+		<%= f.submit "add new note" %>
+	</div>
+	<% end %>
+</div>
+
