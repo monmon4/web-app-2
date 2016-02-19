@@ -3,7 +3,7 @@ class NotesController < ApplicationController
 	def create
 		@note= @pdf_file.notes.new(note_params)
 		if @note.save
-			redirect_to pdf_file_note_path({id: note_parent[:pdf_file_id], pdf_file_id: comment_parent[:pdf_file_id]}),
+			redirect_to pdf_file_slides_path({id: note_parent[:pdf_file_id], pdf_file_id: note_parent[:pdf_file_id]}),
 			 notice: "comment successfully added!"
 		else
 			redirect_to pdf_files_path , alert:"failed to add comment!"
