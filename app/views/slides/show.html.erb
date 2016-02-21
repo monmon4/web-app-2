@@ -28,20 +28,10 @@
   		end %>
 <%=link_to link, pdf_file_slide_path, method: :put %>
 </p>
-<div id="comments">
-	<%= render @slide.comments %>
-</div>
-<div>
-	<%= form_for ([@slide.pdf_file, @slide, @slide.comments.new]) do |f| %>
-	<div class="field">
-		<%= f.label :comment %>
-		<%= f.text_area :comment, size: "25x5" %>
-	</div>
-	<div class="actions">
-		<%= f.submit "add new comment" %>
-	</div>
-	<% end %>
-</div>
+<%= render @slide.comments.order(created_at: :desc)%>
+
+<%= render 'comments/form'%>
+
 
 
 

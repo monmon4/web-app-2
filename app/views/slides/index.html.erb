@@ -30,5 +30,11 @@
 </table>
 <%= will_paginate @slides%>
 <br>
+ 
+<div id="comments">
+  <%= render @pdf_file.comments.order(created_at: :desc)%>
+</div>
+  <%= render 'comments/form' %>
+
 
 
